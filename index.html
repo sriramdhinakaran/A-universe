@@ -1,0 +1,3056 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Queen, Lishy ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #fff5f8;
+    color: #633b4b;
+    font-family: "Cormorant Garamond", serif;
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   LOCK SCREEN
+===================================================== */
+
+#lockScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffafd 0%,
+            #ffe3ed 45%,
+            #e99ab7 100%
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#lockScreen.unlocked {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.lock-container {
+    text-align: center;
+    padding: 25px;
+    animation: lockAppear 1.2s ease;
+}
+
+
+/* LOCK */
+
+.lock {
+    position: relative;
+    width: 105px;
+    height: 120px;
+    margin: auto;
+}
+
+.lock-shackle {
+    position: absolute;
+
+    width: 58px;
+    height: 62px;
+
+    left: 23px;
+    top: 0;
+
+    border: 10px solid #963e64;
+    border-bottom: 0;
+
+    border-radius: 35px 35px 0 0;
+}
+
+.lock-body {
+    position: absolute;
+
+    width: 82px;
+    height: 68px;
+
+    left: 11px;
+    bottom: 0;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ce6d92,
+            #963e64
+        );
+
+    box-shadow:
+        0 15px 35px rgba(120,40,75,.3);
+}
+
+.keyhole {
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    top: 17px;
+    left: 33px;
+
+    border-radius: 50%;
+    background: #ffeaf1;
+}
+
+.keyhole::after {
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+    height: 18px;
+
+    top: 10px;
+    left: 4px;
+
+    background: #ffeaf1;
+}
+
+
+/* LOCK TEXT */
+
+.lock-title {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 65px;
+
+    color: #963e64;
+
+    margin-top: 20px;
+}
+
+.lock-subtitle {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    opacity: .65;
+
+    margin: 5px 0 30px;
+}
+
+
+/* CODE */
+
+.code-input {
+    width: 230px;
+
+    padding: 15px;
+
+    border: 1px solid #d99ab1;
+
+    border-radius: 40px;
+
+    outline: none;
+
+    text-align: center;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 20px;
+
+    letter-spacing: 7px;
+
+    color: #71394f;
+
+    background: rgba(255,255,255,.9);
+}
+
+.code-input:focus {
+    box-shadow:
+        0 0 25px rgba(190,80,120,.2);
+}
+
+.unlock-button {
+    display: block;
+
+    margin: 15px auto;
+
+    padding: 14px 32px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a74369,
+            #df789f
+        );
+
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.unlock-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(150,50,90,.3);
+}
+
+#error {
+    min-height: 20px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 12px;
+
+    color: #a92f5a;
+}
+
+
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
+
+.music-control {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 52px;
+    height: 52px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(150,62,100,.9);
+
+    color: white;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    z-index: 5000;
+
+    box-shadow:
+        0 8px 25px rgba(80,20,50,.25);
+
+    transition: .3s;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffafd 0%,
+            #ffe4ed 40%,
+            #f1aec6 100%
+        );
+
+    overflow: hidden;
+}
+
+.hero-small {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    opacity: .65;
+}
+
+.hero h1 {
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(70px, 13vw, 130px);
+
+    color: #963e64;
+
+    text-shadow:
+        0 8px 25px rgba(150,62,100,.15);
+
+    animation:
+        floating 4s ease-in-out infinite;
+}
+
+.hero p {
+    font-size: 22px;
+}
+
+
+/* =====================================================
+   FLOWER CIRCLE
+===================================================== */
+
+.flower-circle {
+    width: 410px;
+    height: 410px;
+
+    max-width: 90vw;
+    max-height: 90vw;
+
+    position: relative;
+
+    margin: 5px 0 20px;
+}
+
+.flower {
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(var(--angle))
+        translateY(-155px);
+
+    animation:
+        orbit 22s linear infinite;
+}
+
+.flower-inner {
+    width: 100%;
+    height: 100%;
+
+    animation:
+        reverseOrbit 22s linear infinite;
+}
+
+.petal {
+    position: absolute;
+
+    width: 28px;
+    height: 42px;
+
+    top: 2px;
+    left: 18px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #f39bbb
+        );
+
+    transform-origin: 50% 100%;
+
+    box-shadow:
+        0 0 12px rgba(255,160,190,.35);
+}
+
+.petal:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.petal:nth-child(2) {
+    transform: rotate(72deg);
+}
+
+.petal:nth-child(3) {
+    transform: rotate(144deg);
+}
+
+.petal:nth-child(4) {
+    transform: rotate(216deg);
+}
+
+.petal:nth-child(5) {
+    transform: rotate(288deg);
+}
+
+.flower-center {
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    top: 23px;
+    left: 23px;
+
+    border-radius: 50%;
+
+    background: #f2bd63;
+
+    box-shadow:
+        0 0 18px #ffd98a;
+}
+
+.center-heart {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-size: 68px;
+
+    filter:
+        drop-shadow(
+            0 8px 15px
+            rgba(180,50,90,.2)
+        );
+
+    animation:
+        heartbeat 1.8s infinite;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section {
+    padding: 100px 20px;
+}
+
+.section-label {
+    text-align: center;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    opacity: .6;
+}
+
+.section-title {
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 68px;
+
+    color: #963e64;
+
+    margin-bottom: 45px;
+}
+
+
+/* =====================================================
+   STORY
+===================================================== */
+
+.story {
+    max-width: 720px;
+
+    margin: auto;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    line-height: 1.85;
+}
+
+.story-date {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #a8466c;
+
+    margin-bottom: 15px;
+}
+
+.story-heart {
+    font-size: 35px;
+
+    margin: 20px 0;
+}
+
+
+/* =====================================================
+   MEMORIES
+===================================================== */
+
+.memories {
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #fff5f8
+        );
+}
+
+.memory-intro {
+    max-width: 650px;
+
+    margin:
+        -25px auto 40px;
+
+    text-align: center;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   PHOTO SLIDER
+===================================================== */
+
+.slider {
+    position: relative;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe9f0,
+            #fff
+        );
+
+    box-shadow:
+        0 25px 70px
+        rgba(100,40,60,.15);
+}
+
+.slides {
+    display: flex;
+
+    width: 100%;
+
+    transition:
+        transform .8s
+        cubic-bezier(.77,0,.18,1);
+}
+
+.slide {
+    min-width: 100%;
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 40px;
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.single-photo {
+    width: min(650px, 85vw);
+
+    padding:
+        15px 15px 25px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 20px 50px
+        rgba(100,40,60,.18);
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    transform: rotate(-1.5deg);
+
+    transition: .5s;
+}
+
+.slide:nth-child(even)
+.single-photo {
+    transform: rotate(1.5deg);
+}
+
+.single-photo:hover {
+    transform:
+        rotate(0deg)
+        scale(1.015);
+}
+
+
+/* THIS IS THE IMPORTANT PHOTO PART */
+
+.single-photo img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-width: 100%;
+
+    max-height: 650px;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+
+    background: #f8e8ee;
+}
+
+
+/* IF IMAGE FAILS */
+
+.photo-error {
+    display: none;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    font-family: "Montserrat", sans-serif;
+
+    color: #963e64;
+
+    font-size: 14px;
+}
+
+.memory-caption {
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 30px;
+
+    color: #963e64;
+
+    padding-top: 15px;
+}
+
+
+/* =====================================================
+   SLIDER BUTTONS
+===================================================== */
+
+.slider-button {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.95);
+
+    color: #963e64;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    box-shadow:
+        0 5px 20px
+        rgba(100,30,60,.12);
+
+    transition: .3s;
+}
+
+.slider-button:hover {
+    transform:
+        translateY(-50%)
+        scale(1.1);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+
+/* DOTS */
+
+.dots {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #dba5b9;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.dot.active {
+    background: #963e64;
+
+    transform: scale(1.5);
+}
+
+
+/* =====================================================
+   LOVE LETTER
+===================================================== */
+
+.letter-section {
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f8,
+            #fbd8e5
+        );
+}
+
+.letter {
+    max-width: 760px;
+
+    margin: auto;
+
+    padding: 60px;
+
+    position: relative;
+
+    background:
+        rgba(255,255,255,.9);
+
+    box-shadow:
+        0 25px 65px
+        rgba(100,30,60,.12);
+
+    border-radius: 5px;
+}
+
+.letter::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 15px;
+
+    border:
+        1px solid
+        rgba(170,70,100,.2);
+
+    pointer-events: none;
+}
+
+.letter h3 {
+    text-align: center;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 62px;
+
+    color: #963e64;
+
+    margin-bottom: 30px;
+}
+
+.letter p {
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    margin-bottom: 18px;
+}
+
+.letter-opening {
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        34px !important;
+
+    color: #963e64;
+}
+
+.signature {
+    text-align: right;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        44px !important;
+
+    color: #963e64;
+
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   SPOTIFY
+===================================================== */
+
+.playlist {
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #ffe5ee
+        );
+}
+
+.playlist-intro {
+    max-width: 650px;
+
+    margin:
+        -20px auto 30px;
+
+    font-size: 21px;
+
+    line-height: 1.7;
+}
+
+.spotify {
+    max-width: 700px;
+
+    margin: auto;
+}
+
+.spotify iframe {
+    width: 100%;
+
+    height: 352px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(50,20,35,.15);
+}
+
+.playlist-note {
+    margin-top: 20px;
+
+    font-size: 16px;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fff0f5,
+            #e9a2ba
+        );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.final-heart {
+    font-size: 75px;
+
+    animation:
+        heartbeatFinal 1.5s infinite;
+}
+
+.final h2 {
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(70px,11vw,125px);
+
+    color: #963e64;
+
+    margin: 10px 0;
+}
+
+.infinity {
+    font-size: 75px;
+
+    color: #963e64;
+
+    margin: 5px 0 20px;
+
+    animation:
+        infinityGlow 3s
+        ease-in-out infinite;
+}
+
+.final-message {
+    max-width: 720px;
+
+    font-size: 24px;
+
+    line-height: 1.8;
+}
+
+.final-signature {
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 46px;
+
+    color: #963e64;
+
+    margin-top: 30px;
+}
+
+.final-date {
+    margin-top: 30px;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .6;
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.heart {
+    position: fixed;
+
+    bottom: -40px;
+
+    pointer-events: none;
+
+    z-index: 1000;
+
+    animation:
+        rise linear forwards;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes lockAppear {
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--angle))
+            translateY(-155px);
+    }
+
+    to {
+        transform:
+            translate(-50%,-50%)
+            rotate(
+                calc(var(--angle) + 360deg)
+            )
+            translateY(-155px);
+    }
+}
+
+@keyframes reverseOrbit {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes heartbeat {
+    0%,100% {
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%,-50%)
+            scale(1.18);
+    }
+}
+
+@keyframes heartbeatFinal {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes floating {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes infinityGlow {
+    0%,100% {
+        opacity: .65;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes rise {
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            rotate(30deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px) {
+
+    .lock-title {
+        font-size: 55px;
+    }
+
+    .hero h1 {
+        font-size: 72px;
+    }
+
+    .hero p {
+        font-size: 19px;
+    }
+
+    .flower-circle {
+        width: 330px;
+        height: 330px;
+    }
+
+    .flower {
+        transform:
+            translate(-50%,-50%)
+            rotate(var(--angle))
+            translateY(-120px);
+    }
+
+    .section-title {
+        font-size: 53px;
+    }
+
+    section {
+        padding: 80px 15px;
+    }
+
+    .story {
+        font-size: 19px;
+    }
+
+    .slider {
+        padding: 10px;
+    }
+
+    .slide {
+        padding:
+            20px 35px;
+    }
+
+    .single-photo {
+        width: 82vw;
+
+        padding:
+            10px 10px 18px;
+    }
+
+    .single-photo img {
+        max-height: 500px;
+    }
+
+    .memory-caption {
+        font-size: 24px;
+    }
+
+    .slider-button {
+        width: 40px;
+        height: 40px;
+
+        font-size: 23px;
+    }
+
+    .prev {
+        left: 8px;
+    }
+
+    .next {
+        right: 8px;
+    }
+
+    .letter {
+        padding:
+            45px 25px;
+    }
+
+    .letter h3 {
+        font-size: 50px;
+    }
+
+    .letter p {
+        font-size: 18px;
+    }
+
+    .signature {
+        font-size:
+            38px !important;
+    }
+
+    .playlist-intro {
+        font-size: 19px;
+    }
+
+    .final-message {
+        font-size: 20px;
+    }
+
+    .final-signature {
+        font-size: 40px;
+    }
+
+    .music-control {
+        width: 46px;
+        height: 46px;
+
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+/* =====================================================
+   LIVE COUNTER SECTION
+===================================================== */
+
+.counter-section {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,235,243,0.6) 50%, rgba(255,255,255,0) 100%);
+}
+
+.counter-subtitle {
+    font-size: 20px;
+    color: #854a62;
+    margin-top: -25px;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.love-counter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.counter-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(233, 154, 183, 0.4);
+    box-shadow: 0 15px 35px rgba(150, 62, 100, 0.12), inset 0 0 15px rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 22px 25px;
+    min-width: 120px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.counter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(150, 62, 100, 0.2);
+}
+
+.counter-num {
+    font-family: "Montserrat", sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: #963e64;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.counter-label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #a8466c;
+    margin-top: 8px;
+    opacity: 0.85;
+}
+
+.counter-sep {
+    font-size: 20px;
+    animation: pulseHeart 1.5s ease-in-out infinite;
+    user-select: none;
+}
+
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 8px rgba(206,109,146,0.6)); }
+}
+
+.counter-footer {
+    margin-top: 35px;
+    font-size: 22px;
+    color: #7a4258;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+}
+
+/* =====================================================
+   LOVE NOTES JAR
+===================================================== */
+
+.jar-section {
+    text-align: center;
+    padding: 90px 20px;
+    position: relative;
+}
+
+.jar-subtitle {
+    font-size: 21px;
+    color: #854a62;
+    margin-top: -25px;
+    margin-bottom: 45px;
+}
+
+.jar-container {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.jar-body {
+    position: relative;
+    width: 220px;
+    height: 290px;
+    margin: 0 auto;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.jar-container:hover .jar-body {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.jar-container:active .jar-body, .jar-shaking .jar-body {
+    animation: jarWiggle 0.6s ease;
+}
+
+@keyframes jarWiggle {
+    0%, 100% { transform: scale(1.05) rotate(0deg); }
+    20% { transform: scale(1.08) rotate(-6deg); }
+    40% { transform: scale(1.08) rotate(6deg); }
+    60% { transform: scale(1.08) rotate(-4deg); }
+    80% { transform: scale(1.08) rotate(4deg); }
+}
+
+.jar-lid {
+    position: relative;
+    z-index: 3;
+}
+
+.jar-cork {
+    width: 90px;
+    height: 26px;
+    background: linear-gradient(180deg, #d4a373 0%, #b87333 100%);
+    border-radius: 6px 6px 3px 3px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.4);
+    border: 1px solid #9e5b22;
+}
+
+.jar-rim {
+    width: 130px;
+    height: 16px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(230,200,215,0.9), rgba(255,255,255,0.8));
+    border-radius: 10px;
+    margin: -3px auto 0;
+    box-shadow: 0 5px 12px rgba(150,62,100,0.2);
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.jar-glass {
+    position: relative;
+    width: 200px;
+    height: 240px;
+    margin: -4px auto 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,240,246,0.4) 50%, rgba(255,215,230,0.55) 100%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 20px 20px 45px 45px;
+    border: 3px solid rgba(255,255,255,0.85);
+    box-shadow: 0 20px 50px rgba(150,62,100,0.22), inset 0 0 25px rgba(255,255,255,0.7);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jar-glare {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 25px;
+    height: 180px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    border-radius: 15px;
+    transform: rotate(3deg);
+    pointer-events: none;
+}
+
+.jar-hearts-inside {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.jar-floating-item {
+    position: absolute;
+    font-size: 24px;
+    bottom: 25px;
+    animation: floatNote 3.5s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.jar-floating-item:nth-child(1) { left: 30px; }
+.jar-floating-item:nth-child(2) { left: 80px; }
+.jar-floating-item:nth-child(3) { left: 135px; }
+.jar-floating-item:nth-child(4) { left: 55px; }
+.jar-floating-item:nth-child(5) { left: 110px; }
+.jar-floating-item:nth-child(6) { left: 150px; }
+
+@keyframes floatNote {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(15deg); }
+}
+
+.jar-label-tag {
+    position: relative;
+    z-index: 2;
+    background: #fffdfa;
+    border: 1px dashed #ce6d92;
+    padding: 10px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(100,40,60,0.15);
+    transform: rotate(-3deg);
+    font-family: "Great Vibes", cursive;
+    font-size: 28px;
+    color: #963e64;
+    line-height: 1;
+}
+
+.jar-label-tag small {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b3577d;
+    margin-top: 4px;
+}
+
+.jar-btn {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #ce6d92, #963e64);
+    color: #fff;
+    border: none;
+    padding: 15px 36px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    box-shadow: 0 12px 30px rgba(150,62,100,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.jar-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(150,62,100,0.4);
+    background: linear-gradient(135deg, #d8779c, #a8466c);
+}
+
+.jar-counter-badge {
+    margin-top: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a8466c;
+    opacity: 0.8;
+}
+
+/* =====================================================
+   LOVE NOTE MODAL
+===================================================== */
+
+.note-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(45, 20, 30, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.note-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.note-paper {
+    background: #fffaf7;
+    background-image: radial-gradient(#f0d2dc 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 2px solid #e9b3c4;
+    border-radius: 20px;
+    padding: 45px 35px 35px;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(70, 20, 40, 0.4), 0 0 0 10px rgba(255,255,255,0.7);
+    transform: scale(0.85) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.note-modal.active .note-paper {
+    transform: scale(1) translateY(0);
+}
+
+.note-stamp {
+    position: absolute;
+    top: -18px;
+    right: 25px;
+    background: #ce6d92;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(206, 109, 146, 0.4);
+}
+
+.note-number {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a8466c;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.note-content {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    line-height: 1.6;
+    color: #592e40;
+    font-style: italic;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+}
+
+.note-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.note-btn-another {
+    background: linear-gradient(135deg, #ce6d92, #963e64);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(150,62,100,0.25);
+    transition: all 0.25s ease;
+}
+
+.note-btn-another:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(150,62,100,0.35);
+}
+
+.note-btn-close {
+    background: transparent;
+    border: 1px solid #ce6d92;
+    color: #963e64;
+    padding: 12px 24px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.note-btn-close:hover {
+    background: rgba(206,109,146,0.1);
+}
+
+@media (max-width: 600px) {
+    .counter-card {
+        min-width: 70px;
+        padding: 14px 10px;
+    }
+    .counter-num {
+        font-size: 26px;
+    }
+    .counter-label {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+    .counter-sep {
+        font-size: 14px;
+    }
+    .jar-body {
+        width: 180px;
+        height: 250px;
+    }
+    .jar-glass {
+        width: 170px;
+        height: 200px;
+    }
+    .note-content {
+        font-size: 22px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio id="backgroundMusic" loop preload="auto">
+    <source
+        src="I Love You Too Much.mp3"
+        type="audio/mpeg">
+</audio>
+
+<button
+    id="musicButton"
+    class="music-control"
+    onclick="toggleMusic()"
+    aria-label="Toggle music">
+
+    🎵
+
+</button>
+
+
+<!-- =====================================================
+     LOCK SCREEN
+===================================================== -->
+
+<div id="lockScreen">
+
+    <div class="lock-container">
+
+        <div class="lock">
+
+            <div class="lock-shackle"></div>
+
+            <div class="lock-body">
+                <div class="keyhole"></div>
+            </div>
+
+        </div>
+
+        <h1 class="lock-title">
+            For Lishy
+        </h1>
+
+        <div class="lock-subtitle">
+            A little secret from your love
+        </div>
+
+        <input
+            id="code"
+            class="code-input"
+            type="password"
+            inputmode="numeric"
+            maxlength="8"
+            placeholder="••••••••"
+            autocomplete="off">
+
+        <button
+            class="unlock-button"
+            onclick="unlock()">
+
+            🔐 Unlock My Heart
+
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-small">
+        A little universe made for you
+    </div>
+
+    <h1>
+        My Queen, Lishy
+    </h1>
+
+    <p>
+        From your love ❤️
+    </p>
+
+
+    <div class="flower-circle">
+
+
+        <div class="flower" style="--angle:0deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:45deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:90deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:135deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:180deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:225deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:270deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="flower" style="--angle:315deg">
+            <div class="flower-inner">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+        </div>
+
+
+        <div class="center-heart">
+            ❤️
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     STORY
+===================================================== -->
+
+<section>
+
+    <div class="section-label">
+        The beginning of us
+    </div>
+
+    <h2 class="section-title">
+        Our Story
+    </h2>
+
+    <div class="story">
+
+        <div class="story-date">
+            MAY 13 · 2026 · 6:13 PM
+        </div>
+
+        <p>
+            The day our little story began.
+        </p>
+
+        <div class="story-heart">
+            ❤️
+        </div>
+
+        <p>
+            In a world full of billions of people,
+            under the very same sky,
+            our two hearts found each other.
+        </p>
+
+        <br>
+
+        <p>
+            And somehow, you became my Queen
+            and I became your love.
+        </p>
+
+        <br>
+
+        <p>
+            This is only the beginning
+            of our story.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIME TOGETHER / LIVE COUNTER
+===================================================== -->
+
+<section class="counter-section">
+
+    <div class="section-label">
+        Every heartbeat since our story began
+    </div>
+
+    <h2 class="section-title">
+        Our Time Together ⏱️
+    </h2>
+
+    <p class="counter-subtitle">
+        Counting every single moment with you, my Queen ❤️
+    </p>
+
+    <div class="love-counter-wrapper">
+
+        <div class="counter-card">
+            <div class="counter-num" id="counterDays">00</div>
+            <div class="counter-label">Days</div>
+        </div>
+
+        <div class="counter-sep">❤️</div>
+
+        <div class="counter-card">
+            <div class="counter-num" id="counterHours">00</div>
+            <div class="counter-label">Hours</div>
+        </div>
+
+        <div class="counter-sep">❤️</div>
+
+        <div class="counter-card">
+            <div class="counter-num" id="counterMinutes">00</div>
+            <div class="counter-label">Minutes</div>
+        </div>
+
+        <div class="counter-sep">❤️</div>
+
+        <div class="counter-card">
+            <div class="counter-num" id="counterSeconds">00</div>
+            <div class="counter-label">Seconds</div>
+        </div>
+
+    </div>
+
+    <p class="counter-footer">
+        "Every second spent loving you is my favorite second of the day." ♾️
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     MEMORIES
+===================================================== -->
+
+<section class="memories">
+
+    <div class="section-label">
+        Little pieces of us
+    </div>
+
+    <h2 class="section-title">
+        Our Favorite Memories
+    </h2>
+
+    <p class="memory-intro">
+        Every picture holds a little piece of us. ❤️
+    </p>
+
+
+    <div class="slider">
+
+        <div class="slides" id="slides">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="slide">
+
+                <div class="single-photo">
+
+                    <img
+                        src="./photo1.jpg"
+                        alt="Our favorite memory 1"
+                        onerror="showPhotoError(this)">
+
+                    <div class="photo-error">
+                        ❤️<br><br>
+                        This photo could not be loaded.
+                    </div>
+
+                    <div class="memory-caption">
+                        A little moment with you ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="slide">
+
+                <div class="single-photo">
+
+                    <img
+                        src="./photo2.jpg"
+                        alt="Our favorite memory 2"
+                        onerror="showPhotoError(this)">
+
+                    <div class="photo-error">
+                        ❤️<br><br>
+                        This photo could not be loaded.
+                    </div>
+
+                    <div class="memory-caption">
+                        One of my favorite memories 🥹
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="slide">
+
+                <div class="single-photo">
+
+                    <img
+                        src="./photo3.jpg"
+                        alt="Our favorite memory 3"
+                        onerror="showPhotoError(this)">
+
+                    <div class="photo-error">
+                        ❤️<br><br>
+                        This photo could not be loaded.
+                    </div>
+
+                    <div class="memory-caption">
+                        Just you and me ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="slide">
+
+                <div class="single-photo">
+
+                    <img
+                        src="./photo4.jpg"
+                        alt="Our favorite memory 4"
+                        onerror="showPhotoError(this)">
+
+                    <div class="photo-error">
+                        ❤️<br><br>
+                        This photo could not be loaded.
+                    </div>
+
+                    <div class="memory-caption">
+                        More memories to come ♾️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="slider-button prev"
+            onclick="previousSlide()"
+            aria-label="Previous photo">
+
+            ‹
+
+        </button>
+
+
+        <button
+            class="slider-button next"
+            onclick="nextSlide()"
+            aria-label="Next photo">
+
+            ›
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="dots"
+        id="dots">
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOVE NOTES JAR
+===================================================== -->
+
+<section class="jar-section">
+
+    <div class="section-label">
+        A jar full of sweet thoughts
+    </div>
+
+    <h2 class="section-title">
+        Reasons I Love You 🫙✨
+    </h2>
+
+    <p class="jar-subtitle">
+        Whenever you need a reminder of how special you are, tap the jar to pull out a note written just for you, Lishy.
+    </p>
+
+    <div class="jar-container" onclick="openLoveNote(event)" role="button" tabindex="0" aria-label="Open a love note">
+
+        <div class="jar-body">
+
+            <div class="jar-lid">
+                <div class="jar-cork"></div>
+                <div class="jar-rim"></div>
+            </div>
+
+            <div class="jar-glass">
+                <div class="jar-glare"></div>
+
+                <div class="jar-hearts-inside">
+                    <span class="jar-floating-item" style="--delay: 0s;">💌</span>
+                    <span class="jar-floating-item" style="--delay: 0.8s;">💖</span>
+                    <span class="jar-floating-item" style="--delay: 1.6s;">📜</span>
+                    <span class="jar-floating-item" style="--delay: 2.4s;">💕</span>
+                    <span class="jar-floating-item" style="--delay: 3.2s;">✨</span>
+                    <span class="jar-floating-item" style="--delay: 4.0s;">🌸</span>
+                </div>
+
+                <div class="jar-label-tag">
+                    For Lishy
+                    <small>Tap me ❤️</small>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="jar-btn" type="button">
+            ✨ Tap the Jar to Open a Note ✨
+        </button>
+
+        <div class="jar-counter-badge" id="jarCounterBadge">
+            Over 50 sweet reasons waiting for you!
+        </div>
+
+    </div>
+
+    <!-- LOVE NOTE MODAL -->
+    <div class="note-modal" id="noteModal" onclick="closeNoteModalOutside(event)">
+
+        <div class="note-paper" id="notePaper">
+
+            <div class="note-stamp">
+                ❤️ For My Queen
+            </div>
+
+            <div class="note-number" id="noteNumber">
+                Reason #1
+            </div>
+
+            <div class="note-content" id="noteContent">
+                "You are the most beautiful part of my everyday life."
+            </div>
+
+            <div class="note-actions">
+
+                <button class="note-btn-another" type="button" onclick="openLoveNote(event)">
+                    Pick Another Note 💌
+                </button>
+
+                <button class="note-btn-close" type="button" onclick="closeNoteModal(event)">
+                    Keep in My Heart 🌸
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOVE LETTER
+===================================================== -->
+
+<section class="letter-section">
+
+    <div class="section-label">
+        From my heart to yours
+    </div>
+
+    <h2 class="section-title">
+        A Letter For You
+    </h2>
+
+
+    <div class="letter">
+
+        <h3>
+            To My Queen ❤️
+        </h3>
+
+        <p class="letter-opening">
+            My Lishy,
+        </p>
+
+        <p>
+            I don't know if words will ever be enough
+            to explain how much you mean to me,
+            but I want to try.
+        </p>
+
+        <p>
+            I will be the one to love you in infinity
+            and beyond, to give you a home that makes
+            you feel safe and loved, and to be your
+            loving wife.
+        </p>
+
+        <p>
+            I want to be the person you can come home to,
+            the person you can laugh with, dream with,
+            and grow with.
+        </p>
+
+        <p>
+            Through every single day and season,
+            I hope you remember that my whole heart
+            belongs completely and endlessly to you.
+        </p>
+
+        <p>
+            You are my Queen, and I am so grateful
+            that I get to be your love.
+        </p>
+
+        <p>
+            I want to make more memories with you.
+            More silly moments.
+            More late-night conversations.
+            More adventures.
+            More birthdays.
+            More ordinary days that somehow
+            become our favorite memories.
+        </p>
+
+        <p>
+            And every single day, having you in my life
+            is the most beautiful blessing I could have ever asked for.
+        </p>
+
+        <p>
+            Until then, I will keep choosing you.
+        </p>
+
+        <p>
+            I love you to infinity and beyond.
+            ♾️❤️
+        </p>
+
+        <p class="signature">
+            Forever your love ❤️
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PLAYLIST
+===================================================== -->
+
+<section class="playlist">
+
+    <div class="section-label">
+        Songs that sound like us
+    </div>
+
+    <h2 class="section-title">
+        Our Playlist 🎵
+    </h2>
+
+    <p class="playlist-intro">
+        Press play and let these songs tell
+        a little piece of our story.
+    </p>
+
+
+    <div class="spotify">
+
+        <iframe
+            src="https://open.spotify.com/embed/playlist/7uC8cUciOSVzQQUgNgzA2G"
+            title="Our Spotify Playlist"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+
+    <p class="playlist-note">
+        🎧 For my Queen, from your love.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL SURPRISE
+===================================================== -->
+
+<section class="final">
+
+    <div class="final-heart">
+        ❤️
+    </div>
+
+    <h2>
+        I Choose You
+    </h2>
+
+    <div class="infinity">
+        ∞
+    </div>
+
+    <p class="final-message">
+
+        Lishy, I will love you
+        in infinity and beyond.
+
+        <br><br>
+
+        I will love you through every season,
+        through every difficult day,
+        through every beautiful moment,
+        and through every chapter
+        still waiting for us.
+
+        <br><br>
+
+        I want to give you a home
+        where you feel safe,
+        loved,
+        understood,
+        and never alone.
+
+        <br><br>
+
+        And someday...
+
+        <br><br>
+
+        I want that home to be us.
+
+    </p>
+
+    <div class="final-signature">
+
+        Your loving love ❤️
+
+    </div>
+
+    <div class="final-date">
+        08.09.2026
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   PHOTO ERROR
+===================================================== */
+
+function showPhotoError(image) {
+
+    image.style.display = "none";
+
+    const error =
+        image.parentElement.querySelector(".photo-error");
+
+    if (error) {
+        error.style.display = "block";
+    }
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const music =
+    document.getElementById("backgroundMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+music.volume = 0.35;
+
+
+function startMusic() {
+
+    music.play()
+        .then(() => {
+            musicButton.innerHTML = "🎵";
+        })
+        .catch(() => {
+            musicButton.innerHTML = "🔇";
+        });
+
+}
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+                musicButton.innerHTML = "🎵";
+            });
+
+    } else {
+
+        music.pause();
+
+        musicButton.innerHTML = "🔇";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOCK
+===================================================== */
+
+const secretCode = "13022005";
+
+
+function unlock() {
+
+    const input =
+        document.getElementById("code");
+
+    const error =
+        document.getElementById("error");
+
+
+    if (input.value.trim() === secretCode) {
+
+        document
+            .getElementById("lockScreen")
+            .classList.add("unlocked");
+
+        error.innerHTML = "";
+
+        startMusic();
+
+
+        for (
+            let i = 0;
+            i < 35;
+            i++
+        ) {
+
+            setTimeout(
+                createHeart,
+                i * 70
+            );
+
+        }
+
+    } else {
+
+        error.innerHTML =
+            "Try again, my love ❤️";
+
+        input.value = "";
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ENTER TO UNLOCK */
+
+const codeInput = document.getElementById("code");
+
+codeInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+            unlock();
+        }
+
+    }
+);
+
+/* AUTO UNLOCK ON COMPLETE CODE */
+codeInput.addEventListener(
+    "input",
+    function() {
+
+        if (codeInput.value.trim() === secretCode) {
+            unlock();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SLIDER
+===================================================== */
+
+let currentSlide = 0;
+
+const slides =
+    document.getElementById("slides");
+
+const slideItems =
+    document.querySelectorAll(".slide");
+
+const totalSlides =
+    slideItems.length;
+
+const dots =
+    document.getElementById("dots");
+
+
+/* CREATE DOTS */
+
+for (
+    let i = 0;
+    i < totalSlides;
+    i++
+) {
+
+    const dot =
+        document.createElement("button");
+
+    dot.className = "dot";
+
+    dot.setAttribute(
+        "aria-label",
+        "Go to memory " + (i + 1)
+    );
+
+    dot.addEventListener(
+        "click",
+        function() {
+
+            currentSlide = i;
+
+            updateSlider();
+
+        }
+    );
+
+    dots.appendChild(dot);
+
+}
+
+
+/* UPDATE */
+
+function updateSlider() {
+
+    slides.style.transform =
+        "translateX(-" +
+        (currentSlide * 100) +
+        "%)";
+
+
+    document
+        .querySelectorAll(".dot")
+        .forEach(
+            (dot, index) => {
+
+                dot.classList.toggle(
+                    "active",
+                    index === currentSlide
+                );
+
+            }
+        );
+
+}
+
+
+/* NEXT */
+
+function nextSlide() {
+
+    currentSlide++;
+
+    if (
+        currentSlide >= totalSlides
+    ) {
+        currentSlide = 0;
+    }
+
+    updateSlider();
+
+}
+
+
+/* PREVIOUS */
+
+function previousSlide() {
+
+    currentSlide--;
+
+    if (
+        currentSlide < 0
+    ) {
+        currentSlide = totalSlides - 1;
+    }
+
+    updateSlider();
+
+}
+
+
+updateSlider();
+
+
+/* AUTO SLIDE */
+
+setInterval(
+    nextSlide,
+    5000
+);
+
+
+/* =====================================================
+   SWIPE
+===================================================== */
+
+let touchStartX = 0;
+
+slides.addEventListener(
+    "touchstart",
+    function(event) {
+
+        touchStartX =
+            event.touches[0].clientX;
+
+    },
+    { passive: true }
+);
+
+
+slides.addEventListener(
+    "touchend",
+    function(event) {
+
+        const touchEndX =
+            event.changedTouches[0].clientX;
+
+        const distance =
+            touchStartX - touchEndX;
+
+
+        if (
+            Math.abs(distance) > 50
+        ) {
+
+            if (distance > 0) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    const symbols = [
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "💓",
+        "💞",
+        "💘"
+    ];
+
+    heart.innerHTML =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        12 +
+        Math.random() * 22 +
+        "px";
+
+    heart.style.animationDuration =
+        5 +
+        Math.random() * 6 +
+        "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(
+        () => heart.remove(),
+        12000
+    );
+
+}
+
+
+/* CONTINUOUS HEARTS */
+
+setInterval(
+    createHeart,
+    1200
+);
+
+
+/* INITIAL HEARTS */
+
+for (
+    let i = 0;
+    i < 8;
+    i++
+) {
+
+    setTimeout(
+        createHeart,
+        i * 500
+    );
+
+}
+
+/* =====================================================
+   LIVE COUNTER LOGIC
+===================================================== */
+
+const relationshipStart = new Date("2026-05-13T18:13:00");
+
+function updateLoveCounter() {
+    const now = new Date();
+    let diff = now.getTime() - relationshipStart.getTime();
+    diff = Math.abs(diff);
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const daysEl = document.getElementById("counterDays");
+    const hoursEl = document.getElementById("counterHours");
+    const minutesEl = document.getElementById("counterMinutes");
+    const secondsEl = document.getElementById("counterSeconds");
+
+    if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
+}
+
+setInterval(updateLoveCounter, 1000);
+updateLoveCounter();
+
+
+/* =====================================================
+   LOVE NOTES JAR LOGIC
+===================================================== */
+
+const loveNotes = [
+    "The way your smile instantly lights up everything around me, even on my darkest days.",
+    "The gentle, kind way you treat the world and everyone in it.",
+    "How your laugh is genuinely my favorite sound in the entire universe.",
+    "The sweet way you say my name that makes my heart flutter every time.",
+    "How safe, calm, and truly at peace I feel whenever I talk to you.",
+    "The adorable way you express your happiness over the smallest cute things.",
+    "Your beautiful eyes that hold so much warmth, tenderness, and wonder.",
+    "How you make ordinary days feel like extraordinary adventures.",
+    "The patience and understanding you always give me.",
+    "How you believe in me even when I doubt myself.",
+    "The soft and caring soul you have that makes you so incredibly special.",
+    "The memories we've already made, and all the thousands more waiting for us.",
+    "How you always know how to make me laugh when I need it most.",
+    "The warmth of your presence that makes any place feel like home.",
+    "How you are not just my love, but my Queen, my partner, and my best friend.",
+    "The little messages you send that can turn my whole day around in a second.",
+    "How passionate and determined you are about the things you care about.",
+    "The comfort in knowing that in a world of billions, I found you.",
+    "How effortlessly you make me want to be the best version of myself.",
+    "Your voice — it brings an instant wave of tranquility over my soul.",
+    "How cute you are when you're sleepy or excited.",
+    "The way we can talk for hours and it feels like mere minutes.",
+    "The way we can share comfortable silence and still feel completely connected.",
+    "How you care about the little details that most people overlook.",
+    "The gentle kindness that shines through everything you do.",
+    "Because loving you is the easiest and most natural thing I have ever done.",
+    "How every song on our playlist reminds me of a sweet thought of you.",
+    "The way you make my heart race and feel at calm all at the same time.",
+    "Because you are my answered prayer, my Queen, and my favorite person.",
+    "How pure and genuine your heart is.",
+    "Because no matter what happens, choosing you is a choice I will always make.",
+    "The cute silly expressions you make that never fail to melt me.",
+    "How proud I am to be by your side and call you my Queen.",
+    "Because your happiness is something I would protect with all my heart.",
+    "The hope and bright light you bring into every corner of my tomorrow.",
+    "Because with you, love isn't just a feeling — it is my whole home.",
+    "How simply hearing from you makes any bad day instantly better.",
+    "Because you are uniquely, wonderfully, and beautifully you, Lishy.",
+    "The way your hugs linger in my thoughts and keep me warm.",
+    "Because every love story is beautiful, but ours is my favorite.",
+    "The way you care for the people you love with your whole heart.",
+    "Because you make me believe in magic, destiny, and forever.",
+    "How you understand me even when I struggle to find the right words.",
+    "Because you are my greatest adventure and my safest haven.",
+    "The sparkle in your eyes whenever you talk about things you love.",
+    "Because every second spent with you is a second I treasure deeply.",
+    "How you inspire me with your gentle strength and resilience.",
+    "Because my heart chose you, and it has never doubted for a single second.",
+    "How your love makes me feel like the luckiest person alive.",
+    "Because you are my Queen today, tomorrow, and for all of eternity. ❤️"
+];
+
+let remainingNotes = [...loveNotes];
+let openedNotesCount = 0;
+
+function openLoveNote(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+
+    const jarContainer = document.querySelector(".jar-container");
+    if (jarContainer) {
+        jarContainer.classList.add("jar-shaking");
+        setTimeout(() => jarContainer.classList.remove("jar-shaking"), 600);
+    }
+
+    createJarHeartBurst();
+
+    if (remainingNotes.length === 0) {
+        remainingNotes = [...loveNotes];
+    }
+    const randomIndex = Math.floor(Math.random() * remainingNotes.length);
+    const chosenNote = remainingNotes.splice(randomIndex, 1)[0];
+    openedNotesCount++;
+
+    const noteModal = document.getElementById("noteModal");
+    const noteContent = document.getElementById("noteContent");
+    const noteNumber = document.getElementById("noteNumber");
+    const badge = document.getElementById("jarCounterBadge");
+
+    if (noteContent && noteNumber && noteModal) {
+        const noteIndex = loveNotes.indexOf(chosenNote) + 1;
+        noteNumber.textContent = "Reason #" + noteIndex;
+        noteContent.textContent = '"' + chosenNote + '"';
+        noteModal.classList.add("active");
+    }
+
+    if (badge) {
+        badge.textContent = "You've uncovered " + openedNotesCount + " sweet reasons for Lishy ❤️";
+    }
+}
+
+function closeNoteModal(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    const noteModal = document.getElementById("noteModal");
+    if (noteModal) {
+        noteModal.classList.remove("active");
+    }
+}
+
+function closeNoteModalOutside(event) {
+    if (event.target && event.target.id === "noteModal") {
+        closeNoteModal();
+    }
+}
+
+function createJarHeartBurst() {
+    const jar = document.querySelector(".jar-glass");
+    if (!jar) return;
+    const rect = jar.getBoundingClientRect();
+    const burstIcons = ["💖", "✨", "💌", "🌸", "💕", "❤️"];
+
+    for (let i = 0; i < 8; i++) {
+        const heart = document.createElement("div");
+        heart.textContent = burstIcons[Math.floor(Math.random() * burstIcons.length)];
+        heart.style.position = "fixed";
+        heart.style.left = (rect.left + rect.width / 2) + "px";
+        heart.style.top = (rect.top + rect.height / 3) + "px";
+        heart.style.fontSize = (16 + Math.random() * 16) + "px";
+        heart.style.pointerEvents = "none";
+        heart.style.zIndex = "100001";
+        heart.style.transition = "all 0.9s cubic-bezier(0.25, 1, 0.5, 1)";
+        heart.style.opacity = "1";
+
+        document.body.appendChild(heart);
+
+        const angle = (Math.PI * 2 * i) / 8 + (Math.random() * 0.4 - 0.2);
+        const distance = 60 + Math.random() * 70;
+        const targetX = Math.cos(angle) * distance;
+        const targetY = Math.sin(angle) * distance - 30;
+
+        requestAnimationFrame(() => {
+            heart.style.transform = `translate(${targetX}px, ${targetY}px) scale(1.3)`;
+            heart.style.opacity = "0";
+        });
+
+        setTimeout(() => heart.remove(), 1000);
+    }
+}
+
+</script>
+
+</body>
+</html>
+```
